@@ -1,41 +1,68 @@
-const hamburger = document.querySelector('.hamburger'),
-      menu = document.querySelector('.menu'),
-      closeElem = document.querySelector('.menu__close');
+const hamburger = document.querySelector('.hamburger');
+const menu = document.querySelector('.menu')
+const closeElem = document.querySelector('.menu__close');
+const menuOverlay = document.querySelector('.menu__overlay')
 
-      hamburger.addEventListener('click', () => {
-          menu.classList.add('active');
-      });
+function closeMenu() {
+    menu.classList.remove('active');
+}
 
-      
+hamburger.addEventListener('click', () => {
+    menu.classList.add('active');
+});
 
-      closeElem.addEventListener('click', () => {
-          menu.classList.remove('active');
-      });
+document.addEventListener('click', (e) => {
+    if ((e.target) == menuOverlay) {
+        closeMenu();
+    }
+});
+
+
+closeElem.addEventListener('click', () => {
+    // menu.classList.remove('active');
+
+    closeMenu();
+});
 
 
 const counters = document.querySelectorAll('.skills__ratings-counter'),
-      lines = document.querySelectorAll('.skills__ratings-line span');
+    lines = document.querySelectorAll('.skills__ratings-line span');
 
 counters.forEach((item, i) => {
     lines[i].style.width = item.innerHTML;
 });
 
-// const sidePanel = document.querySelector('.sidepanel'),
-//         sidePanelLink = document.querySelector('.sidepanel__link'),
-//         sidePanelDivider = document.querySelector('.sidepanel__divider'),
-//         sidePanelText = document.querySelector('.sidepanel__text'),
-//         promo = document.querySelector('.promo'),
 
-//         promoHeight = promo.getBoundingClientRect().height;
+// Add scroll to anchors
 
-//     document.addEventListener('scroll', (e) => {
-//         if (window.scrollY < promoHeight) {
-//             sidePanel.style.background = 'transparent';
-//         }
+const anchors = document.querySelectorAll('a[href*="#"]');
 
-//         if (window.scrollY >= promoHeight) {
-//             sidePanelLink.fill = '#000';
-//             sidePanelDivider.style.background = '#000';
-//             sidePanelText.style.color = '#000';
-//         }
-//     });
+anchors.forEach(anchor => {
+    anchor.addEventListener('click', (e) => {
+        e.preventDefault();
+        console.log(anchor.href)
+
+        const blockID = anchor.getAttribute('href').substr(1)
+        document.getElementById(blockID).scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        })
+
+        closeMenu();
+    })
+});
+
+// for (let anchor in anchors) {
+
+//     anchor.addEventListener('click', function(e) {
+//         e.preventDefault();
+
+//         const blockID = anchor.getAttribute('href').substr(1);
+//         console.log(blockID)
+//         document.getElementById(blockID).scrollIntoView({
+//             behavior: 'smooth',
+//             block: 'start'
+//         });
+//     })
+
+// }
