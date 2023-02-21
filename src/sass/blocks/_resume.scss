@@ -69,6 +69,7 @@
             left: 45px;
             @include before_circle;
             img {
+                height: 30px;
                 position: absolute;
                 left: 16px;
                 top: 13px;
