@@ -91,18 +91,21 @@
     &__input {
         position: relative;
         input {
+            outline: none;
             width: 100%;
             height: 100%;
             padding: 0 20px;
             font-weight: 500;
             font-size: 12px;  
         }
+        
     }
 
     &__textarea {
         position: relative;
         grid-column: 1 / 3;
         textarea {
+            outline: none;
             width: 100%;
             height: 100%;
             resize: none;
@@ -113,6 +116,7 @@
     }
     
     &__btn {
+        outline: none;
         border: none;
         font-weight: bold;
         font-size: 14px;
