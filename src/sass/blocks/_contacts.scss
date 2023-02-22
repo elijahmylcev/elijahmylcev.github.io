@@ -45,9 +45,16 @@
             transform: scale(1.10);
             border: none;
         }
+        .rotate {
+            transform: rotateZ(90deg);
+            &:hover {
+                transform: rotateZ(90deg) scale(1.15);
+            }
+        }
         img {
             width: 30px;
             height: 30px;
+            
             &:hover {
                 transform: scale(1.15);
             }
@@ -96,7 +103,7 @@
             height: 100%;
             padding: 0 20px;
             font-weight: 500;
-            font-size: 12px;  
+            font-size: 12px;
         }
         
     }
