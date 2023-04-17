@@ -1,8 +1,9 @@
 const hamburger = document.querySelector('.hamburger');
-const menu = document.querySelector('.menu')
+const menu = document.querySelector('.menu');
 const closeElem = document.querySelector('.menu__close');
-const menuOverlay = document.querySelector('.menu__overlay')
+const menuOverlay = document.querySelector('.menu__overlay');
 const promo = document.querySelector('.promo');
+const languages = document.querySelectorAll('.select_lang__item');
 
 function closeMenu() {
     menu.classList.remove('active');
@@ -69,3 +70,24 @@ document.addEventListener('scroll', function () {
 
     }
 })
+
+// Work with languages
+const existsLanguages = ['en', 'ru']
+const changeUrlHash = (e) => {
+    console.log(e.dataset.value);
+    location.href = window.location.pathname + '#' + e.dataset.value;
+    // location.reload();
+}
+
+const changeLanguage = () => {
+    const hash = window.location.hash.substring(1)
+    console.log(hash);
+    if (!existsLanguages.includes(hash)) {
+        location.href = window.location.pathname + '#en'
+        location.reload()
+    }
+}
+
+changeLanguage()
+
+languages.forEach(item => item.addEventListener('click', e => changeUrlHash(e.target)))
