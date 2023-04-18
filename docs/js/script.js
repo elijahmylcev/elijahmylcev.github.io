@@ -35,14 +35,11 @@ counters.forEach((item, i) => {
 
 
 // Add scroll to anchors
-
 const anchors = document.querySelectorAll('a[href*="#"]');
 
 anchors.forEach(anchor => {
     anchor.addEventListener('click', (e) => {
         e.preventDefault();
-        console.log(anchor.href)
-
         const blockID = anchor.getAttribute('href').substr(1)
         document.getElementById(blockID).scrollIntoView({
             behavior: 'smooth',
@@ -74,20 +71,45 @@ document.addEventListener('scroll', function () {
 // Work with languages
 const existsLanguages = ['en', 'ru']
 const changeUrlHash = (e) => {
-    console.log(e.dataset.value);
     location.href = window.location.pathname + '#' + e.dataset.value;
-    // location.reload();
 }
 
 const changeLanguage = () => {
     const hash = window.location.hash.substring(1)
-    console.log(hash);
     if (!existsLanguages.includes(hash)) {
         location.href = window.location.pathname + '#en'
-        location.reload()
     }
+    loadLanguage(hash)
 }
 
-changeLanguage()
+// changeLanguage()
 
 languages.forEach(item => item.addEventListener('click', e => changeUrlHash(e.target)))
+
+window.addEventListener('hashchange', changeLanguage)
+
+function loadLanguage(lang) {
+    // URL-адрес JSON-файла для выбранного языка
+    const url = '/languages/' + lang + '/' + 'content.json';
+    // AJAX, чтобы загрузить JSON-файл
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            const texts = JSON.parse(xhr.responseText);
+            console.log(texts);
+
+            for (let key in texts) {
+                let elem = document.querySelectorAll(`[data-lang-${key}`);
+                if (elem) {
+                    elem.forEach(el => {
+                        el.innerText = texts[key];
+                    })
+                }
+            }
+        }    
+    };
+    xhr.send();
+}
+
+changeLanguage(window.location.hash.substring(1))
