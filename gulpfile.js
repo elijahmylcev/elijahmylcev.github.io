@@ -74,12 +74,12 @@ gulp.task('images', function () {
 
 gulp.task('watch', function () {
 	gulp.watch('src/sass/**/*.+(scss|sass|css)', gulp.parallel('styles'));
-	gulp.watch('src/*.html').on('change', gulp.parallel('html'));
+	gulp.watch('src/*.html', gulp.parallel('html'));
 	gulp.watch('src/js/**/*.js').on('change', gulp.parallel('scripts'));
-	gulp.watch('src/fonts/**/*').on('all', gulp.parallel('fonts'));
-	gulp.watch('src/icons/**/*').on('all', gulp.parallel('icons'));
-	gulp.watch('src/img/**/*').on('all', gulp.parallel('images'));
-	gulp.watch('src/languages/**/*').on('all', gulp.parallel('json'));
+	gulp.watch('src/fonts/**/*').on('change', gulp.parallel('fonts'));
+	gulp.watch('src/icons/**/*').on('change', gulp.parallel('icons'));
+	gulp.watch('src/img/**/*').on('change', gulp.parallel('images'));
+	gulp.watch('src/languages/**/*', gulp.parallel('json'));
 });
 
 gulp.task(

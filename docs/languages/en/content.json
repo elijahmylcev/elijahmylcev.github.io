@@ -6,5 +6,12 @@
   "menu-price": "PRICE",
   "menu-contacts": "CONTACTS",
   "name": "My name is Elijah",
-  "promo-title": "I am a Fullstack Developer from Belgrade"
+  "promo-title": "I am a Fullstack Developer from Belgrade",
+  "about-text": "I am able to work in a multitasking mode. I possess strong analytical skills that enable me to effectively work with large amounts of information and find high-quality solutions to assigned tasks. I am constantly learning and practicing to solve current challenges. Here are the fields in which I practice:",
+  "skills-web-title": "Web Development",
+  "skills-web-text": "Cross-browser layout, creating interactive and responsive websites, web applications using native tools, or with the help of Vue...",
+  "skills-app-title": "Application Development",
+  "skills-app-text": "Developing web applications, SPAs using the Vue framework, React library",
+  "skills-sql-title": "Databases",
+  "skills-sql-text": "I have experience working with SQL, including creating and modifying databases, writing stored procedures and functions, optimizing query performance. Additionally, I also have skills in data analysis, such as collecting, processing and interpreting information, creating reports and dashboards to support decision-making."
 }
