@@ -78,8 +78,6 @@ const heightFirstRow = Number(rows[0].slice(0, -2))
 const heightSecondRow = Number(rows[1].slice(0, -2))
 const rowGap = Number(getComputedStyle(skills_items).rowGap.slice(0, -2))
 
-console.log(rows, rowGap);
-
 skills_items.style.height = paddingTop > 5 ? heightFirstRow + heightSecondRow + rowGap +'px' : heightFirstRow + heightSecondRow + rowGap *2 +'px'
 
 accordionButton.addEventListener('click', () => {
@@ -139,8 +137,8 @@ const sendMessage = document.querySelector('.contacts__btn');
 const form = document.querySelector('.contacts__form');
 form.addEventListener('submit', (e) => {
     e.preventDefault()
-    const token = process.env.TELEGRAM_TOKEN;
-    const chatId = process.env.CHAT_ID;
+    const token = TELEGRAM_TOKEN;
+    const chatId = CHAT_ID;
     const formData = new FormData(e.target)
     const name = formData.get("name")
     const email = formData.get("email")
