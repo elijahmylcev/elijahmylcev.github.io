@@ -2,12 +2,15 @@
   margin-top: 120px;
 
   &__items {
+    transition: height .5s ease;
     margin-top: 60px;
     padding: 0 10px;
     display: grid;
     grid-template: repeat(2, minmax(270px, auto)) / repeat(4, 270px);
-    grid-auto-rows: minmax(270px, auto);
-    gap: 13px;
+    grid-auto-rows: auto;
+    row-gap: 20px;
+    column-gap: 13px;
+    overflow: hidden;
   }
 
   &__item {
@@ -31,6 +34,12 @@
       font-size: 12px;
       line-height: 18px;
     }
+  }
+
+  &__more {
+    @include button_silver;
+    margin: 15px auto 0 auto;
+    font-style: italic;
   }
 
   &__ratings {

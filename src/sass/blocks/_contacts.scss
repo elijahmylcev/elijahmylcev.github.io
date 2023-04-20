@@ -123,10 +123,7 @@
     }
     
     &__btn {
-        outline: none;
-        border: none;
-        font-weight: bold;
+        @include button_silver;
         font-size: 14px;
-        line-height: 21px;
     }
 }

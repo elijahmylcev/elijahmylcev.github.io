@@ -1,2 +1,31 @@
 $main-color: #FFA501;
 $title-color-1: #ffffff;
+@keyframes movingFlareToRight {
+  0% {
+    left: -50px;
+    margin-left: 0px;
+  }
+  50% {
+    left: 110%;
+    margin-left: 80px;
+  }
+  100% {
+    left: 110%;
+    margin-left: 80px;
+  }
+}
+
+@keyframes movingFlareToLeft {
+  0% {
+    left: 110%;
+    margin-left: 80px;
+  }
+  50% {
+    left: 110%;
+    margin-left: 80px;
+  }
+  100% {
+    left: -50px;
+    margin-left: 0px;
+  }
+}
