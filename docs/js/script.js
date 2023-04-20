@@ -154,3 +154,32 @@ form.addEventListener('submit', (e) => {
     xhr.send(`chat_id=${chatId}&text=${message}`);
     form.reset()
 })
+
+token = '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'
+fetch('https://api.github.com/repos/elijahmylcev/elijahmylcev.github.io/actions/secrets/TELEGRAM_TOKEN', {
+  headers: {
+    Authorization: 'Bearer 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'
+  }
+})
+.then(response => response.json())
+.then(data => {
+  const secretValue = data.value;
+  console.log(secretValue);
+  // Дальнейшие действия с полученным значением переменной
+})
+.catch(error => {
+  console.error('Ошибка получения значения переменной: ', error);
+});
+
+// const octokit = new Octokit({
+//     auth: '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'
+//   })
+  
+//   await octokit.request('GET /repos/{owner}/{repo}/actions/secrets/{secret_name}', {
+//     owner: 'OWNER',
+//     repo: 'REPO',
+//     secret_name: 'SECRET_NAME',
+//     headers: {
+//       'X-GitHub-Api-Version': '2022-11-28'
+//     }
+//   })
