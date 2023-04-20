@@ -85,6 +85,11 @@
         grid-template-columns: repeat(2, auto);
         column-gap: 35px;
     }
+
+    [data-lang-contacts-policy-link] {
+        margin-left: 10px;
+    }
+
     &__policy {
         font-size: 12px;
         line-height: 14px;
@@ -123,10 +128,7 @@
     }
     
     &__btn {
-        outline: none;
-        border: none;
-        font-weight: bold;
+        @include button_silver;
         font-size: 14px;
-        line-height: 21px;
     }
 }

@@ -23,6 +23,30 @@
     background-color: $main-color;
     margin: 25px auto 0 auto;
 }
+.select_lang {
+    position: absolute;
+    top: 20px;
+    right: 100px;
+    display: flex;
+    gap: 10px;
+    &__item {
+        width: 35px;
+        height: 25px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all .3s;
+        &:hover {
+            scale: 1.1;
+        }
+        &:first-child {
+            background: url('../img/lang/en.png') center/cover
+        }
+        &:last-child {
+            background: url('../img/lang/rus.png') center/cover
+        }
+    }
+}
 
 @import 'blocks/promo';
 @import "blocks/title";
