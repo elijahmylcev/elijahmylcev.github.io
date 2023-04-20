@@ -51,8 +51,8 @@ anchors.forEach(anchor => {
     })
 });
 
-//scroll
 
+//scroll
 document.addEventListener('scroll', function () {
     // let scrolling = document.scrollTop;
     const hamSpan = hamburger.querySelectorAll('span');
@@ -77,20 +77,23 @@ const rows = gridTemplateRows.split(' ');
 const heightFirstRow = Number(rows[0].slice(0, -2))
 const heightSecondRow = Number(rows[1].slice(0, -2))
 const rowGap = Number(getComputedStyle(skills_items).rowGap.slice(0, -2))
-skills_items.style.height = paddingTop > 5 ? heightFirstRow + heightSecondRow + rowGap +'px' : heightFirstRow + heightSecondRow + rowGap +'px'
+
+console.log(rows, rowGap);
+
+skills_items.style.height = paddingTop > 5 ? heightFirstRow + heightSecondRow + rowGap +'px' : heightFirstRow + heightSecondRow + rowGap *2 +'px'
 
 accordionButton.addEventListener('click', () => {
     if (skills_items.offsetHeight >= skills_items.scrollHeight) {
-        skills_items.style.height = paddingTop > 5 ? heightFirstRow + heightSecondRow + rowGap +'px' : heightFirstRow + heightSecondRow + rowGap +'px'
+        skills_items.style.height = paddingTop > 5 ? heightFirstRow + heightSecondRow + rowGap +'px' : heightFirstRow + heightSecondRow + rowGap*2 +'px'
         accordionButton.innerText = 'More...'
     } else {
-        skills_items.style.height = skills_items.scrollHeight+ 2 + 'px'
+        skills_items.style.height = skills_items.scrollHeight + 2 + 'px'
         accordionButton.innerText = 'less...'
     }
 })
 
 
-// Work with languages
+// Job for languages
 const existsLanguages = ['en', 'ru']
 const changeUrlHash = (e) => {
     location.href = window.location.pathname + '#' + e.dataset.value;
@@ -110,7 +113,7 @@ window.addEventListener('hashchange', changeLanguage)
 function loadLanguage(lang) {
     // URL-адрес JSON-файла для выбранного языка
     const url = '/languages/' + lang + '/' + 'content.json';
-    // AJAX, чтобы загрузить JSON-файл
+    // AJAX, загрузка JSON-файла
     const xhr = new XMLHttpRequest();
     xhr.open('GET', url, true);
     xhr.onreadystatechange = function () {
