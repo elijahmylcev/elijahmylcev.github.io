@@ -155,17 +155,16 @@ form.addEventListener('submit', (e) => {
     form.reset()
 })
 
-token = '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'
-fetch('https://api.github.com/repos/elijahmylcev/elijahmylcev.github.io/actions/secrets/TELEGRAM_TOKEN', {
+
+fetch('https://api.github.com/repos/elijahmylcev/elijahmylcev.github.io/actions/secrets/TELEGRAM_TOKEN/', {
   headers: {
-    Authorization: 'Bearer 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'
+    Authorization: 'Bearer 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'
   }
 })
 .then(response => response.json())
 .then(data => {
   const secretValue = data.value;
   console.log(secretValue);
-  // Дальнейшие действия с полученным значением переменной
 })
 .catch(error => {
   console.error('Ошибка получения значения переменной: ', error);
