@@ -137,8 +137,8 @@ const sendMessage = document.querySelector('.contacts__btn');
 const form = document.querySelector('.contacts__form');
 form.addEventListener('submit', (e) => {
     e.preventDefault()
-    const token = TELEGRAM_TOKEN;
-    const chatId = CHAT_ID;
+    const token = document.querySelector('meta[name="token"]').getAttribute('content');
+    const chatId = document.querySelector('meta[name="id"]').getAttribute('content');
     const formData = new FormData(e.target)
     const name = formData.get("name")
     const email = formData.get("email")
@@ -146,39 +146,11 @@ form.addEventListener('submit', (e) => {
   
     const message = `Name: ${name} \nEmail: ${email} \nMessage: ${text}`;
 
-    const url = `https://api.telegram.org/bot${token}/sendMessage`;
+    // const url = `https://api.telegram.org/bot${token}/sendMessage`;
 
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', url, true);
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.send(`chat_id=${chatId}&text=${message}`);
+    // const xhr = new XMLHttpRequest();
+    // xhr.open('POST', url, true);
+    // xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    // xhr.send(`chat_id=${chatId}&text=${message}`);
     form.reset()
 })
-
-
-fetch('https://api.github.com/repos/elijahmylcev/elijahmylcev.github.io/actions/secrets/TELEGRAM_TOKEN/', {
-  headers: {
-    Authorization: 'Bearer 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'
-  }
-})
-.then(response => response.json())
-.then(data => {
-  const secretValue = data.value;
-  console.log(secretValue);
-})
-.catch(error => {
-  console.error('Ошибка получения значения переменной: ', error);
-});
-
-// const octokit = new Octokit({
-//     auth: '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'
-//   })
-  
-//   await octokit.request('GET /repos/{owner}/{repo}/actions/secrets/{secret_name}', {
-//     owner: 'OWNER',
-//     repo: 'REPO',
-//     secret_name: 'SECRET_NAME',
-//     headers: {
-//       'X-GitHub-Api-Version': '2022-11-28'
-//     }
-//   })
