@@ -133,3 +133,26 @@ function loadLanguage(lang) {
 }
 
 changeLanguage(window.location.hash.substring(1))
+
+// SendMessage
+const sendMessage = document.querySelector('.contacts__btn');
+const form = document.querySelector('.contacts__form');
+form.addEventListener('submit', (e) => {
+    e.preventDefault()
+    const token = process.env.TELEGRAM_TOKEN;
+    const chatId = process.env.CHAT_ID;
+    const formData = new FormData(e.target)
+    const name = formData.get("name")
+    const email = formData.get("email")
+    const text = formData.get("text")
+  
+    const message = `Name: ${name} \nEmail: ${email} \nMessage: ${text}`;
+
+    const url = `https://api.telegram.org/bot${token}/sendMessage`;
+
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', url, true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.send(`chat_id=${chatId}&text=${message}`);
+    form.reset()
+})
