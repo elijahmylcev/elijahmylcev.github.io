@@ -6,6 +6,10 @@ const promo = document.querySelector('.promo');
 const languages = document.querySelectorAll('.select_lang__item');
 const accordionButton = document.querySelector('.skills__more');
 
+window.addEventListener('DOMContentLoaded', () => {
+    changeLanguage()
+})
+
 function closeMenu() {
     menu.classList.remove('active');
     document.body.style.overflowY = "auto"
@@ -71,25 +75,41 @@ document.addEventListener('scroll', function () {
 
 // Accordion
 const skills_items = document.querySelector('.skills__items')
-const paddingTop = Number(getComputedStyle(skills_items).paddingTop.slice(0, -2))
-const gridTemplateRows = getComputedStyle(skills_items).getPropertyValue('grid-template-rows')
-const rows = gridTemplateRows.split(' ');
-const heightFirstRow = Number(rows[0].slice(0, -2))
-const heightSecondRow = Number(rows[1].slice(0, -2))
-const rowGap = Number(getComputedStyle(skills_items).rowGap.slice(0, -2))
+let heightFirstRow
+let heightSecondRow
+let rowGap
 
-skills_items.style.height = paddingTop > 5 ? heightFirstRow + heightSecondRow + rowGap +'px' : heightFirstRow + heightSecondRow + rowGap *2 +'px'
+function returnSizes() {
+    const section = document.querySelector('.skills__items')
+    const gridTemplateRows = getComputedStyle(section).getPropertyValue('grid-template-rows')
+    const rows = gridTemplateRows.split(' ');
+    heightFirstRow = Number(rows[0].slice(0, -2))
+    heightSecondRow = Number(rows[1].slice(0, -2))
+    rowGap = Number(getComputedStyle(section).rowGap.slice(0, -2))
+}
 
-accordionButton.addEventListener('click', () => {
+function changeStateAccordion() {
     if (skills_items.offsetHeight >= skills_items.scrollHeight) {
-        skills_items.style.height = paddingTop > 5 ? heightFirstRow + heightSecondRow + rowGap +'px' : heightFirstRow + heightSecondRow + rowGap*2 +'px'
+        skills_items.style.height = heightFirstRow + heightSecondRow + rowGap +'px'
         accordionButton.innerText = 'More...'
     } else {
         skills_items.style.height = skills_items.scrollHeight + 2 + 'px'
         accordionButton.innerText = 'less...'
     }
-})
+}
 
+const observer = new ResizeObserver(entries => {
+    for (let entry of entries) {
+      if (entry.contentBoxSize) {
+        returnSizes()
+      }
+    }
+});
+  
+// Looking changes
+observer.observe(skills_items);
+
+accordionButton.addEventListener('click', changeStateAccordion)
 
 // Job for languages
 const existsLanguages = ['en', 'ru']
@@ -109,9 +129,7 @@ languages.forEach(item => item.addEventListener('click', e => changeUrlHash(e.ta
 window.addEventListener('hashchange', changeLanguage)
 
 function loadLanguage(lang) {
-    // URL-адрес JSON-файла для выбранного языка
     const url = '/languages/' + lang + '/' + 'content.json';
-    // AJAX, загрузка JSON-файла
     const xhr = new XMLHttpRequest();
     xhr.open('GET', url, true);
     xhr.onreadystatechange = function () {
@@ -125,12 +143,15 @@ function loadLanguage(lang) {
                     })
                 }
             }
+            const skills_items = document.querySelector('.skills__items')
+            returnSizes()
+            changeStateAccordion()
         }    
     };
     xhr.send();
 }
 
-changeLanguage(window.location.hash.substring(1))
+
 
 // SendMessage
 const sendMessage = document.querySelector('.contacts__btn');
